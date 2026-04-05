@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>𝓖𝓐𝓜𝓔_𝓗𝓤𝓑_𝓚𝓔𝓡𝓐𝓛𝓐</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #c1c3c9, #ded6d6);
+      color: white;
+    }
+
+    header {
+      padding: 40px;
+      text-align: center;
+      background: linear-gradient(90deg, #001f3f, #0074D9);
+      box-shadow: 0 0 30px #0074D9;
+    }
+
+    h1 {
+      font-size: 45px;
+      color: #00aaff;
+      letter-spacing: 2px;
+    }
+
+    .top-buttons {
+      margin-top: 15px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      background: #c2c6cc;
+      box-shadow: 0 0 10px #0e0ede;
+    }
+
+    input {
+      width: 80%;
+      padding: 15px;
+      margin: 30px auto;
+      display: block;
+      border-radius: 10px;
+      border: none;
+      font-size: 18px;
+      background: #1050b7;
+      color: white;
+      box-shadow: 0 0 15px #0074D9;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .game {
+      background: #111;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.4s;
+      box-shadow: 0 0 15px rgba(0,174,255,0.5);
+    }
+
+    .game:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px #00aaff;
+    }
+
+    .game img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .game-info {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .buy-btn {
+      display: block;
+      margin-top: 10px;
+      padding: 10px;
+      background: #0b18c9;
+      color: rgb(255, 255, 255);
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎮𝓖𝓐𝓜𝓔_𝓗𝓤𝓑_𝓚𝓔𝓡𝓐𝓛𝓐</h1>
+
+  <div class="top-buttons">
+    <a class="btn" href="https://www.instagram.com/game_hub_kerala" target="_blank">Instagram</a>
+    <a class="btn" href="mailto:gamehubkerala7@gmail.com">Email</a>
+  </div>
+</header>
+
+<input type="text" id="search" placeholder="🔍 Search games..." onkeyup="searchGame()">
+
+<div class="games" id="gameContainer"></div>
+
+<footer>
+  <p>© 2026 GAME HUB KERALA</p>
+</footer>
+
+<script>
+let games = [
+{name:"GTA V", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2lbd.jpg"},
+{name:"FIFA 23", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2l5t.jpg"},
+{name:"Cyberpunk 2077", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg"},
+{name:"COD Warzone", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2edz.jpg"},
+{name:"RDR 2", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg"},
+{name:"Forza Horizon 5", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2l7u.jpg"},
+{name:"Minecraft", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co49x5.jpg"},
+{name:"Spider-Man", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co1r7f.jpg"},
+{name:"God of War", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg"},
+{name:"AC Valhalla", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2edr.jpg"},
+{name:"Elden Ring", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg"},
+{name:"Dying Light 2", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2p2p.jpg"},
+{name:"Witcher 3", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg"},
+{name:"Horizon Zero Dawn", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2c3q.jpg"},
+{name:"Far Cry 6", img:"https://images.igdb.com/igdb/image/upload/t_cover_big/co2d7h.jpg"}
+];
+
+function displayGames(list){
+  let container = document.getElementById("gameContainer");
+  container.innerHTML = "";
+
+  list.forEach(g => {
+    container.innerHTML += `
+      <div class="game">
+        <img src="${g.img}">
+        <div class="game-info">
+          <h3>${g.name}</h3>
+          <a class="buy-btn" href="https://www.instagram.com/game_hub_kerala" target="_blank">Buy Now</a>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function searchGame(){
+  let input = document.getElementById("search").value.toLowerCase();
+  let filtered = games.filter(g => g.name.toLowerCase().includes(input));
+  displayGames(filtered);
+}
+
+displayGames(games);
+</script>
+
+</body>
+</html>
